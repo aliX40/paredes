@@ -148,10 +148,10 @@ export default function Home() {
         {/* COD banner */}
         <section className="py-12 sm:py-16 bg-cream">
           <Container narrow>
-            <div className="bg-accent/5 border border-accent/20 rounded-2xl p-8 sm:p-10 text-center">
-              <div className="w-14 h-14 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="bg-primary/5 border border-primary/20 rounded-2xl p-8 sm:p-10 text-center">
+              <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
-                  className="w-7 h-7 text-accent"
+                  className="w-7 h-7 text-primary"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"

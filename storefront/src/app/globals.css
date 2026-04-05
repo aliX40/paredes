@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Paredes color palette */
-  --color-primary: #688dc3;
-  --color-primary-dark: #4a6fa5;
-  --color-primary-light: #8aaad6;
-  --color-accent: #00c39c;
-  --color-accent-dark: #00a07f;
-  --color-accent-light: #33d4b3;
-  --color-cream: #fff7ec;
-  --color-cyan-light: #f1fbfc;
+  /* Paredes color palette — teal + orange from the logo */
+  --color-primary: #1AACA8;
+  --color-primary-dark: #148F8C;
+  --color-primary-light: #3DC4C0;
+  --color-accent: #F5A623;
+  --color-accent-dark: #D98E1B;
+  --color-accent-light: #F7BC55;
+  --color-cream: #FFF8F0;
+  --color-cyan-light: #F0FAF9;
   --color-text: #5b6770;
   --color-text-dark: #1a1a2e;
   --color-border: #e2e8f0;
@@ -44,13 +44,13 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Selection color */
 ::selection {
-  background-color: #688dc3;
+  background-color: #1AACA8;
   color: white;
 }
 
 /* Focus ring utility */
 *:focus-visible {
-  outline: 2px solid #688dc3;
+  outline: 2px solid #1AACA8;
   outline-offset: 2px;
 }
 

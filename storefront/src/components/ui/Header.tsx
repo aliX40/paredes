@@ -24,13 +24,11 @@ export default function Header({ cartCount = 0, onCartClick }: HeaderProps) {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <a href="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">P</span>
-            </div>
+            <img src="/logo.jpg" alt="Paredes" className="h-9 w-9 rounded-lg object-contain" />
             <span className="text-xl font-bold text-text-dark tracking-tight group-hover:text-primary transition-colors">
               PAREDES
             </span>
-            <span className="hidden sm:inline-block text-[10px] font-medium text-primary bg-primary/10 px-1.5 py-0.5 rounded-full uppercase tracking-wider">
+            <span className="hidden sm:inline-block text-[10px] font-medium text-accent bg-accent/10 px-1.5 py-0.5 rounded-full uppercase tracking-wider">
               Tunisie
             </span>
           </a>
