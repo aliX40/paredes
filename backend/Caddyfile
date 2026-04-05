@@ -1,7 +1,0 @@
-api.paredes.tn {
-	reverse_proxy medusa:9000
-}
-
-admin.paredes.tn {
-	reverse_proxy medusa:9000
-}

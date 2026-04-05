@@ -137,9 +137,9 @@ Medusa gère nativement les statuts de commande et les fulfillments depuis le da
 | `api.paredes.tn` | VPS (Medusa backend, port 9000) |
 | `admin.paredes.tn` | VPS (Medusa admin, port 9000/app) |
 
-Un reverse proxy (Caddy ou Nginx) sur le VPS pour :
-- Terminer le SSL (Let's Encrypt) pour `api.paredes.tn` et `admin.paredes.tn`
-- Proxier vers le container Medusa
+Nginx (déjà installé sur le VPS) sert de reverse proxy :
+- SSL via certbot (Let's Encrypt) pour `api.paredes.tn` et `admin.paredes.tn`
+- Proxy vers le container Medusa sur `127.0.0.1:9000`
 
 ---
 
@@ -150,7 +150,7 @@ Un reverse proxy (Caddy ou Nginx) sur le VPS pour :
 ├── SPEC.md              ← ce fichier
 ├── backend/
 │   ├── Dockerfile
-│   ├── docker-compose.yml   (inclut postgres, redis, medusa, caddy)
+│   ├── docker-compose.yml   (postgres, redis, medusa)
 │   ├── medusa-config.ts
 │   ├── .env
 │   └── src/
