@@ -22,93 +22,101 @@ export default function HeroBanner({
   return (
     <section
       className={cn(
-        "relative overflow-hidden bg-text-dark min-h-[420px] sm:min-h-[500px] flex items-center",
+        "relative overflow-hidden bg-gradient-to-br from-white via-cyan-light to-white",
         className
       )}
     >
-      {/* Background image */}
-      {imageSrc && (
-        <div className="absolute inset-0">
-          <img
-            src={imageSrc}
-            alt=""
-            className="w-full h-full object-cover"
-          />
-          {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-text-dark/90 via-text-dark/70 to-text-dark/30" />
-        </div>
-      )}
-
-      {/* Decorative accent bar */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-primary" />
+      {/* Subtle decorative shapes */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/[0.04] rounded-full -translate-y-1/2 translate-x-1/3" />
+      <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent/[0.04] rounded-full translate-y-1/2 -translate-x-1/3" />
 
       <Container>
-        <div className="relative py-16 sm:py-20 lg:py-28 max-w-2xl">
-          {/* Logo badge */}
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 mb-6">
-            <img src="/logo.jpg" alt="" className="h-5 w-5 rounded-full" />
-            <span className="text-sm font-medium text-white/90">
-              Distributeur exclusif en Tunisie
-            </span>
+        <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center py-14 sm:py-20 lg:py-24">
+          {/* Text content */}
+          <div>
+            {/* Logo badge */}
+            <div className="inline-flex items-center gap-2.5 bg-primary/[0.07] rounded-full px-4 py-2 mb-8">
+              <img src="/logo.jpg" alt="" className="h-5 w-5 rounded-full" />
+              <span className="text-sm font-semibold text-primary-dark tracking-wide uppercase">
+                Distributeur exclusif en Tunisie
+              </span>
+            </div>
+
+            <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold leading-[1.1] tracking-tight text-text-dark">
+              {headline}
+            </h1>
+            <p className="mt-5 sm:mt-6 text-lg leading-relaxed text-text max-w-lg">
+              {subtext}
+            </p>
+            <div className="mt-10 flex flex-wrap gap-4">
+              <a href={ctaHref}>
+                <Button variant="primary" size="lg">
+                  {ctaLabel}
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </Button>
+              </a>
+              <a href="/offres">
+                <Button variant="secondary" size="lg">
+                  Nos offres
+                </Button>
+              </a>
+            </div>
+
+            {/* Trust indicators */}
+            <div className="mt-10 flex flex-wrap gap-x-6 gap-y-3 text-sm text-text">
+              <div className="flex items-center gap-2">
+                <span className="flex items-center justify-center w-5 h-5 rounded-full bg-primary/10">
+                  <svg className="w-3 h-3 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                  </svg>
+                </span>
+                Produits éco-responsables
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="flex items-center justify-center w-5 h-5 rounded-full bg-primary/10">
+                  <svg className="w-3 h-3 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                  </svg>
+                </span>
+                Conseil par métier
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="flex items-center justify-center w-5 h-5 rounded-full bg-primary/10">
+                  <svg className="w-3 h-3 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                  </svg>
+                </span>
+                Paiement à la livraison
+              </div>
+            </div>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-white">
-            {headline}
-          </h1>
-          <p className="mt-4 sm:mt-6 text-base sm:text-lg leading-relaxed text-white/80 max-w-xl">
-            {subtext}
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a href={ctaHref}>
-              <Button variant="accent" size="lg">
-                {ctaLabel}
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
-              </Button>
-            </a>
-            <a href="/offres">
-              <Button
-                variant="ghost"
-                size="lg"
-                className="text-white border border-white/30 hover:bg-white/10 hover:text-white"
-              >
-                Nos offres
-              </Button>
-            </a>
-          </div>
-
-          {/* Trust indicators */}
-          <div className="mt-10 flex flex-wrap gap-6 text-sm text-white/60">
-            <div className="flex items-center gap-2">
-              <svg className="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-              Paiement à la livraison
+          {/* Image */}
+          {imageSrc && (
+            <div className="relative hidden lg:flex justify-center">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl ring-1 ring-black/5">
+                <img
+                  src={imageSrc}
+                  alt="Produits Paredes"
+                  className="w-full h-[440px] object-cover"
+                />
+                {/* Soft gradient overlay at bottom */}
+                <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/10 to-transparent" />
+              </div>
             </div>
-            <div className="flex items-center gap-2">
-              <svg className="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-              Livraison toute la Tunisie
-            </div>
-            <div className="flex items-center gap-2">
-              <svg className="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-              Qualité professionnelle
-            </div>
-          </div>
+          )}
         </div>
       </Container>
     </section>
