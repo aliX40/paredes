@@ -30,6 +30,7 @@ export default function Home() {
           subtext="Distributeur exclusif Paredes en Tunisie. Essuyage, hygiène et entretien — qualité professionnelle, paiement à la livraison."
           ctaLabel="Découvrir nos produits"
           ctaHref="/produits"
+          imageSrc="/hero-banner.webp"
         />
 
         {/* Categories */}

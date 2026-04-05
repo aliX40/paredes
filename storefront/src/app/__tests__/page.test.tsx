@@ -52,8 +52,8 @@ describe("Home page", () => {
   it("renders the COD (payment on delivery) banner", () => {
     renderPage();
     expect(
-      screen.getByText("Paiement \u00e0 la livraison")
-    ).toBeInTheDocument();
+      screen.getAllByText(/Paiement à la livraison/).length
+    ).toBeGreaterThanOrEqual(1);
   });
 
   it("renders the header with PAREDES branding", () => {

@@ -25,6 +25,10 @@ export const metadata: Metadata = {
     "produits hygiène",
     "TND",
   ],
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/logo.jpg",
+  },
   openGraph: {
     title: "Paredes Tunisie — Produits d'hygiène professionnelle",
     description:
