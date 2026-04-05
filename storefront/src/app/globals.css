@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Paredes color palette */
+  --color-primary: #688dc3;
+  --color-primary-dark: #4a6fa5;
+  --color-primary-light: #8aaad6;
+  --color-accent: #00c39c;
+  --color-accent-dark: #00a07f;
+  --color-accent-light: #33d4b3;
+  --color-cream: #fff7ec;
+  --color-cyan-light: #f1fbfc;
+  --color-text: #5b6770;
+  --color-text-dark: #1a1a2e;
+  --color-border: #e2e8f0;
+  --color-border-light: #f0f4f8;
+  --color-error: #dc2626;
+  --color-success: #16a34a;
+  --color-warning: #f59e0b;
+
+  /* Font */
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: #ffffff;
+  color: #5b6770;
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #1a1a2e;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Selection color */
+::selection {
+  background-color: #688dc3;
+  color: white;
+}
+
+/* Focus ring utility */
+*:focus-visible {
+  outline: 2px solid #688dc3;
+  outline-offset: 2px;
+}
+
+/* Smooth image loading */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Price formatting helper */
+.price {
+  font-variant-numeric: tabular-nums;
+}
