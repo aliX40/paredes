@@ -11,9 +11,14 @@
     "seed": "medusa exec src/scripts/seed.ts"
   },
   "dependencies": {
+    "@medusajs/admin-sdk": "^2.13.6",
     "@medusajs/cli": "^2",
+    "@medusajs/dashboard": "^2.13.6",
+    "@medusajs/draft-order": "^2.13.6",
     "@medusajs/framework": "^2",
     "@medusajs/medusa": "^2",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
