@@ -42,10 +42,16 @@ interface MedusaProduct {
   status: string;
 }
 
+function toMillimes(amount: number): number {
+  return Math.round(amount * 1000);
+}
+
 function mapProduct(p: MedusaProduct): Product {
   const variant = p.variants?.[0];
-  const price = variant?.calculated_price?.calculated_amount ?? 0;
-  const compareAtPrice = variant?.calculated_price?.original_amount ?? null;
+  const rawPrice = variant?.calculated_price?.calculated_amount ?? 0;
+  const rawCompare = variant?.calculated_price?.original_amount ?? null;
+  const price = toMillimes(rawPrice);
+  const compareAtPrice = rawCompare != null ? toMillimes(rawCompare) : null;
 
   const category = p.categories?.[0] || p.collection;
   const categoryId = category?.id || "";
@@ -78,7 +84,7 @@ function mapProduct(p: MedusaProduct): Product {
 
 export async function getProducts(regionId: string): Promise<Product[]> {
   const data = await medusaFetch<{ products: MedusaProduct[] }>(
-    `/store/products?region_id=${regionId}&fields=*variants.calculated_price&limit=100`
+    `/store/products?region_id=${regionId}&fields=*variants.calculated_price,*categories,+tags&limit=100`
   );
   return data.products.map(mapProduct);
 }
@@ -89,7 +95,7 @@ export async function getProduct(
 ): Promise<Product | null> {
   try {
     const data = await medusaFetch<{ products: MedusaProduct[] }>(
-      `/store/products?handle=${handle}&region_id=${regionId}&fields=*variants.calculated_price`
+      `/store/products?handle=${handle}&region_id=${regionId}&fields=*variants.calculated_price,*categories,+tags`
     );
     if (data.products.length === 0) return null;
     return mapProduct(data.products[0]);
@@ -104,7 +110,7 @@ export async function getProductById(
 ): Promise<Product | null> {
   try {
     const data = await medusaFetch<{ product: MedusaProduct }>(
-      `/store/products/${id}?region_id=${regionId}&fields=*variants.calculated_price`
+      `/store/products/${id}?region_id=${regionId}&fields=*variants.calculated_price,*categories,+tags`
     );
     return mapProduct(data.product);
   } catch {
