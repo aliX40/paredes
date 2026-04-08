@@ -24,7 +24,7 @@ function ProduitsContent() {
       const cat = categories.find((c) => c.handle === activeCategory);
       return cat ? p.categoryId === cat.id : true;
     });
-  }, [activeCategory]);
+  }, [activeCategory, products, categories]);
 
   const handleAddToCart = (product: Product) => {
     addToCart(product);
