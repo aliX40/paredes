@@ -23,14 +23,17 @@ export const categories: Category[] = [
 
 export const products: Product[] = [
   {
-    id: "prod_001",
-    title: "Bobine d'essuyage industrielle 1000 feuilles",
+    id: "prod_essuie_tout",
+    title: "Essuie-tout ménager compact blanc 90 formats Ecolabel",
     description:
-      "Bobine d'essuyage industrielle 2 plis, très absorbante. Idéale pour les ateliers, cuisines professionnelles et environnements industriels. 1000 feuilles par rouleau.",
-    handle: "bobine-essuyage-industrielle-1000",
-    thumbnail: null,
-    images: [],
-    price: 15900,
+      "Essuie-tout ménager compact blanc, 90 formats (22,4 x 23 cm). Certifié Ecolabel, idéal pour un usage quotidien en cuisine professionnelle ou domestique. Très absorbant et résistant.",
+    handle: "essuie-tout-menager-compact-blanc-90",
+    thumbnail:
+      "https://res.cloudinary.com/dvutyulln/image/upload/s--Che2xt-M--/c_pad,dpr_auto,f_auto,h_500,q_auto:eco,w_500/v1/produits/473020",
+    images: [
+      "https://res.cloudinary.com/dvutyulln/image/upload/s--Che2xt-M--/c_pad,dpr_auto,f_auto,h_500,q_auto:eco,w_500/v1/produits/473020",
+    ],
+    price: 8500,
     compareAtPrice: null,
     categoryId: "cat_essuyage",
     categoryName: "Essuyage",
@@ -38,63 +41,57 @@ export const products: Product[] = [
     inStock: true,
   },
   {
-    id: "prod_002",
-    title: "Savon mousse antiseptique 1L",
+    id: "prod_degraissant",
+    title: "Dégraissant surpuissant Paredes Access 750ml",
     description:
-      "Savon mousse antiseptique pour distributeur, formulé pour un usage fréquent en milieu professionnel. Respecte la peau tout en éliminant 99,9% des bactéries.",
-    handle: "savon-mousse-antiseptique-1l",
-    thumbnail: null,
-    images: [],
-    price: 12500,
+      "Dégraissant surpuissant Paredes Access en flacon pulvérisateur de 750ml. Formule professionnelle pour éliminer les graisses tenaces sur toutes les surfaces lavables. Prêt à l'emploi.",
+    handle: "degraissant-surpuissant-paredes-access-750ml",
+    thumbnail:
+      "https://res.cloudinary.com/dvutyulln/image/upload/s--5rat8MSl--/c_pad,dpr_auto,f_auto,h_500,q_auto:eco,w_500/v1/produits/259020",
+    images: [
+      "https://res.cloudinary.com/dvutyulln/image/upload/s--5rat8MSl--/c_pad,dpr_auto,f_auto,h_500,q_auto:eco,w_500/v1/produits/259020",
+    ],
+    price: 18900,
     compareAtPrice: null,
-    categoryId: "cat_hygiene",
-    categoryName: "Hygiène",
-    tags: ["nouveau"],
-    inStock: true,
-  },
-  {
-    id: "prod_003",
-    title: "Nettoyant multi-surfaces professionnel 5L",
-    description:
-      "Nettoyant multi-surfaces concentré pour un usage quotidien. Efficace sur toutes les surfaces lavables. Parfum frais longue durée.",
-    handle: "nettoyant-multi-surfaces-5l",
-    thumbnail: null,
-    images: [],
-    price: 28900,
-    compareAtPrice: 34900,
     categoryId: "cat_entretien",
     categoryName: "Entretien",
-    tags: ["offre"],
-    inStock: true,
-  },
-  {
-    id: "prod_004",
-    title: "Essuie-mains pliés en V — carton de 20 paquets",
-    description:
-      "Essuie-mains enchevêtrés pliage en V, 2 plis. Compatibles avec la plupart des distributeurs professionnels. Carton de 20 paquets de 150 feuilles.",
-    handle: "essuie-mains-plies-v-carton-20",
-    thumbnail: null,
-    images: [],
-    price: 45000,
-    compareAtPrice: null,
-    categoryId: "cat_essuyage",
-    categoryName: "Essuyage",
     tags: [],
     inStock: true,
   },
   {
-    id: "prod_005",
-    title: "Pack Hygiène Complète — Savon + Gel + Essuie-mains",
+    id: "prod_nettoyant_vitres",
+    title: "Nettoyant vitres Ecolabel Paredes Glass Clean 750ml",
     description:
-      "Bundle complet pour équiper vos sanitaires : 1 carton de savon mousse (6 recharges), 1 carton de gel hydroalcoolique (6 flacons), 1 carton d'essuie-mains pliés. Économisez 15% par rapport à l'achat séparé.",
-    handle: "pack-hygiene-complete",
-    thumbnail: null,
-    images: [],
-    price: 89900,
-    compareAtPrice: 105000,
+      "Nettoyant vitres Ecolabel Paredes Glass Clean en pulvérisateur de 750ml. Formule écologique certifiée Ecolabel européen. Ne laisse aucune trace, séchage rapide. Idéal pour vitres, miroirs et surfaces lisses.",
+    handle: "nettoyant-vitres-ecolabel-glass-clean-750ml",
+    thumbnail:
+      "https://res.cloudinary.com/dvutyulln/image/upload/s--p-hq587z--/c_pad,dpr_auto,f_auto,h_500,q_auto:eco,w_500/v1/produits/051058",
+    images: [
+      "https://res.cloudinary.com/dvutyulln/image/upload/s--p-hq587z--/c_pad,dpr_auto,f_auto,h_500,q_auto:eco,w_500/v1/produits/051058",
+    ],
+    price: 14500,
+    compareAtPrice: null,
+    categoryId: "cat_entretien",
+    categoryName: "Entretien",
+    tags: [],
+    inStock: true,
+  },
+  {
+    id: "prod_papier_toilette",
+    title: "Papier toilette petit rouleau 200 feuilles Ecolabel",
+    description:
+      "Papier toilette petit rouleau blanc, 200 feuilles (9,1 x 10 cm). Certifié Ecolabel, doux et résistant. Adapté aux distributeurs professionnels standard.",
+    handle: "papier-toilette-petit-rouleau-200-feuilles",
+    thumbnail:
+      "https://res.cloudinary.com/dvutyulln/image/upload/s--bo6cozgI--/c_pad,dpr_auto,f_auto,h_500,q_auto:eco,w_500/v1/produits/126085",
+    images: [
+      "https://res.cloudinary.com/dvutyulln/image/upload/s--bo6cozgI--/c_pad,dpr_auto,f_auto,h_500,q_auto:eco,w_500/v1/produits/126085",
+    ],
+    price: 3900,
+    compareAtPrice: null,
     categoryId: "cat_hygiene",
     categoryName: "Hygiène",
-    tags: ["bundle", "offre"],
+    tags: [],
     inStock: true,
   },
 ];
