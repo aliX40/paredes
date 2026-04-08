@@ -9,6 +9,17 @@ import Input from "@/components/ui/Input";
 import PhoneInput from "@/components/ui/PhoneInput";
 import { useCart } from "@/lib/cart-context";
 import { formatPrice, validatePhone } from "@/lib/utils";
+import {
+  createCart,
+  addLineItem,
+  updateCart,
+  getShippingOptions,
+  addShippingMethod,
+  setPaymentSession,
+  completeCart,
+  getRegionId,
+  getVariantId,
+} from "@/lib/medusa";
 import type { CheckoutForm } from "@/types";
 
 export default function CheckoutPage() {
@@ -64,14 +75,14 @@ export default function CheckoutPage() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
     if (items.length === 0) return;
 
     setSubmitting(true);
 
-    // Store order info for confirmation page
+    // Store order info for confirmation page (regardless of API success)
     const orderData = {
       items: [...items],
       subtotal,
@@ -80,6 +91,66 @@ export default function CheckoutPage() {
       customer: { ...form },
       createdAt: new Date().toISOString(),
     };
+
+    try {
+      // Try to create order in Medusa
+      const regionId = await getRegionId();
+      const cart = await createCart(regionId);
+
+      // Add line items
+      for (const item of items) {
+        const variantId = await getVariantId(item.productId, regionId);
+        if (variantId) {
+          await addLineItem(cart.id, variantId, item.quantity);
+        }
+      }
+
+      // Set shipping address + email
+      const phone = form.phone.replace(/\s/g, "");
+      await updateCart(cart.id, {
+        email: `${phone}@pare-des.tn`,
+        shipping_address: {
+          first_name: form.fullName.split(" ")[0] || form.fullName,
+          last_name: form.fullName.split(" ").slice(1).join(" ") || ".",
+          address_1: form.address,
+          city: form.city,
+          postal_code: form.postalCode,
+          country_code: "tn",
+          phone,
+          metadata: { notes: form.notes || "" },
+        },
+        billing_address: {
+          first_name: form.fullName.split(" ")[0] || form.fullName,
+          last_name: form.fullName.split(" ").slice(1).join(" ") || ".",
+          address_1: form.address,
+          city: form.city,
+          postal_code: form.postalCode,
+          country_code: "tn",
+          phone,
+        },
+      });
+
+      // Add shipping method
+      const shippingOpts = await getShippingOptions(cart.id);
+      if (shippingOpts.length > 0) {
+        await addShippingMethod(cart.id, shippingOpts[0].id);
+      }
+
+      // Initialize payment (system provider = COD)
+      const updatedCart = await updateCart(cart.id, {});
+      if (updatedCart.payment_collection?.id) {
+        await setPaymentSession(
+          updatedCart.payment_collection.id,
+          "pp_system_default"
+        );
+      }
+
+      // Complete cart → creates order
+      await completeCart(cart.id);
+    } catch (err) {
+      console.warn("Medusa checkout failed, saving locally:", err);
+      // Still proceed — the order data is saved locally
+    }
 
     try {
       localStorage.setItem("paredes_last_order", JSON.stringify(orderData));

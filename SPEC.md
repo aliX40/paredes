@@ -3,7 +3,7 @@
 ## Résumé
 
 Site e-commerce pour la vente des produits Paredes en Tunisie (distributeur exclusif).  
-Domaine : **paredes.tn** | Langue : **Français** | Devise : **TND**  
+Domaine : **pare-des.tn** (anciennement paredes.tn) | Langue : **Français** | Devise : **TND**  
 Facebook : [Paredes Tunisie](https://www.facebook.com/profile.php?id=100075623007069)
 
 ---
@@ -49,7 +49,7 @@ sur tous les services. Docker redémarre automatiquement les containers en cas d
 - **Région** : Tunisie, devise TND
 - **Paiement** : Provider "system" (manuel) = paiement à la livraison
 - **Livraison** : Flat rate shipping (tarif unique pour toute la Tunisie)
-- **Admin** : Accessible via `https://admin.paredes.tn` ou `http://<ip-vps>:9000/app`
+- **Admin** : Accessible via `https://admin.pare-des.tn` ou `http://<ip-vps>:9000/app`
 
 ### Données à saisir via l'admin
 
@@ -125,7 +125,7 @@ Medusa gère nativement les statuts de commande et les fulfillments depuis le da
 
 - Le dossier `/root/paredes/storefront/` est un repo Git (ou sous-dossier du mono-repo)
 - CI/CD : push sur `main` → build + deploy automatique sur Netlify
-- Variable d'environnement : `NEXT_PUBLIC_MEDUSA_BACKEND_URL=https://api.paredes.tn`
+- Variable d'environnement : `NEXT_PUBLIC_MEDUSA_BACKEND_URL=https://api.pare-des.tn`
 
 ---
 
@@ -133,12 +133,12 @@ Medusa gère nativement les statuts de commande et les fulfillments depuis le da
 
 | Sous-domaine | Pointe vers |
 |-------------|-------------|
-| `paredes.tn` / `www.paredes.tn` | Netlify (storefront) |
-| `api.paredes.tn` | VPS (Medusa backend, port 9000) |
-| `admin.paredes.tn` | VPS (Medusa admin, port 9000/app) |
+| `pare-des.tn` / `www.pare-des.tn` | Netlify (storefront) |
+| `api.pare-des.tn` | VPS (Medusa backend, port 9000) |
+| `admin.pare-des.tn` | VPS (Medusa admin, port 9000/app) |
 
 Nginx (déjà installé sur le VPS) sert de reverse proxy :
-- SSL via certbot (Let's Encrypt) pour `api.paredes.tn` et `admin.paredes.tn`
+- SSL via certbot (Let's Encrypt) pour `api.pare-des.tn` et `admin.pare-des.tn`
 - Proxy vers le container Medusa sur `127.0.0.1:9000`
 
 ---

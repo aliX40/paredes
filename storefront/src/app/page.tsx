@@ -5,12 +5,13 @@ import Footer from "@/components/ui/Footer";
 import HeroBanner from "@/components/ui/HeroBanner";
 import ProductCard from "@/components/ui/ProductCard";
 import Container from "@/components/ui/Container";
-import { products, categories } from "@/lib/placeholder-data";
+import { useStoreData } from "@/lib/use-store-data";
 import { useCart } from "@/lib/cart-context";
 import type { Product } from "@/types";
 
 export default function Home() {
   const { addToCart, itemCount } = useCart();
+  const { products, categories } = useStoreData();
 
   const handleAddToCart = (product: Product) => {
     addToCart(product);

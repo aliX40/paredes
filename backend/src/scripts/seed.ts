@@ -14,15 +14,16 @@ import {
 } from "@medusajs/framework/types"
 
 export default async function seed({ container }: ExecArgs) {
-  const logger = container.resolve("logger")
+  const logger = container.resolve("logger") as any
+  const storeModuleService = container.resolve("store") as any
+  const stockLocationModule = container.resolve("stockLocation") as any
+  const fulfillmentModule = container.resolve("fulfillment") as any
+  const regionModule = container.resolve("region") as any
+  const salesChannelModule = container.resolve("salesChannel") as any
 
   logger.info("Seeding Paredes.tn data...")
 
-  // -------------------------------------------------------
-  // 1. Create the store defaults
-  // -------------------------------------------------------
-  const storeModuleService = container.resolve("store")
-
+  // 1. Update store
   const [store] = await storeModuleService.listStores()
   if (store) {
     await storeModuleService.updateStores(store.id, {
@@ -34,11 +35,7 @@ export default async function seed({ container }: ExecArgs) {
     logger.info("Store updated: Paredes Tunisie (TND)")
   }
 
-  // -------------------------------------------------------
   // 2. Create stock location
-  // -------------------------------------------------------
-  const stockLocationModule = container.resolve("stockLocation")
-
   let stockLocation
   const [existingLocation] = await stockLocationModule.listStockLocations({
     name: "Entrepot Tunisie",
@@ -57,12 +54,7 @@ export default async function seed({ container }: ExecArgs) {
   }
   logger.info(`Stock location: ${stockLocation.id}`)
 
-  // -------------------------------------------------------
   // 3. Create fulfillment set and shipping option
-  // -------------------------------------------------------
-  const fulfillmentModule = container.resolve("fulfillment")
-
-  // Create a fulfillment set
   const fulfillmentSet = await fulfillmentModule.createFulfillmentSets({
     name: "Livraison Tunisie",
     type: "shipping",
@@ -78,14 +70,9 @@ export default async function seed({ container }: ExecArgs) {
       },
     ],
   })
-
   logger.info(`Fulfillment set created: ${fulfillmentSet.id}`)
 
-  // -------------------------------------------------------
   // 4. Create region
-  // -------------------------------------------------------
-  const regionModule = container.resolve("region")
-
   const [existingRegion] = await regionModule.listRegions({
     name: "Tunisie",
   })
@@ -104,11 +91,7 @@ export default async function seed({ container }: ExecArgs) {
     logger.info(`Region created: ${region.id}`)
   }
 
-  // -------------------------------------------------------
   // 5. Create sales channel
-  // -------------------------------------------------------
-  const salesChannelModule = container.resolve("salesChannel")
-
   const [existingChannel] = await salesChannelModule.listSalesChannels({
     name: "Boutique en ligne",
   })
@@ -125,14 +108,6 @@ export default async function seed({ container }: ExecArgs) {
   }
   logger.info(`Sales channel: ${salesChannel.id}`)
 
-  logger.info("------------------------------------------")
   logger.info("Seed complete!")
-  logger.info("")
-  logger.info("Next steps (via the Admin dashboard at /app):")
-  logger.info("1. Create an admin user:  npx medusa user -e admin@paredes.tn -p yourpassword")
-  logger.info("2. Log into the admin dashboard")
-  logger.info("3. Go to Settings > Regions and verify 'Tunisie' region with TND")
-  logger.info("4. Go to Settings > Regions > Tunisie > Shipping Options to add a flat rate")
-  logger.info("5. Add products via the Products page")
-  logger.info("------------------------------------------")
+  logger.info("Next: npx medusa user -e admin@paredes.tn -p yourpassword")
 }

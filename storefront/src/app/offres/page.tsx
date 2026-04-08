@@ -4,13 +4,14 @@ import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
 import ProductCard from "@/components/ui/ProductCard";
 import Container from "@/components/ui/Container";
-import { products } from "@/lib/placeholder-data";
+import { useStoreData } from "@/lib/use-store-data";
 import { useCart } from "@/lib/cart-context";
 import { formatPrice } from "@/lib/utils";
 import type { Product } from "@/types";
 
 export default function OffresPage() {
   const { addToCart, itemCount } = useCart();
+  const { products } = useStoreData();
 
   const offerProducts = products.filter(
     (p) => p.tags.includes("offre") || p.tags.includes("bundle")

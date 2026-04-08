@@ -7,7 +7,7 @@ import ProductCard from "@/components/ui/ProductCard";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Badge from "@/components/ui/Badge";
-import { products } from "@/lib/placeholder-data";
+import { useStoreData } from "@/lib/use-store-data";
 import { useCart } from "@/lib/cart-context";
 import { formatPrice } from "@/lib/utils";
 import type { Product } from "@/types";
@@ -19,6 +19,7 @@ export default function ProductDetailPage({
 }) {
   const { id } = use(params);
   const { addToCart, itemCount } = useCart();
+  const { products } = useStoreData();
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
 
